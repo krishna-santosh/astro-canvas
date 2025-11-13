@@ -1,0 +1,122 @@
+[
+  {
+    "id": "React",
+    "name": "React",
+    "link": "https://react.dev/",
+    "logo": "logos:react"
+  },
+  {
+    "id": "SvelteKit",
+    "name": "SvelteKit",
+    "link": "https://svelte.dev/",
+    "logo": "logos:svelte-icon"
+  },
+  {
+    "id": "Nuxt",
+    "name": "Nuxt",
+    "link": "https://nuxt.com/",
+    "logo": "logos:nuxt-icon"
+  },
+  {
+    "id": "Astro",
+    "name": "Astro",
+    "link": "https://astro.build/",
+    "logo": "logos:astro-icon"
+  },
+  {
+    "id": "Tailwind CSS",
+    "name": "Tailwind CSS",
+    "link": "https://tailwindcss.com/",
+    "logo": "devicon:tailwindcss"
+  },
+  {
+    "id": "Vite",
+    "name": "Vite",
+    "link": "https://vite.dev/",
+    "logo": "logos:vitejs"
+  },
+  {
+    "id": "Hono",
+    "name": "Hono",
+    "link": "https://hono.dev",
+    "logo": "logos:hono"
+  },
+  {
+    "id": "Bun",
+    "name": "Bun",
+    "link": "https://bun.sh",
+    "logo": "logos:bun"
+  },
+  {
+    "id": "TRPC",
+    "name": "TRPC",
+    "link": "https://trpc.io/",
+    "logo": "logos:trpc"
+  },
+  {
+    "id": "Prisma",
+    "name": "Prisma",
+    "link": "https://prisma.io/",
+    "logo": "devicon:prisma"
+  },
+  {
+    "id": "Turborepo",
+    "name": "Turborepo",
+    "link": "https://turbo.build/",
+    "logo": "logos:turborepo-icon"
+  },
+  {
+    "id": "Go",
+    "name": "Go",
+    "link": "https://go.dev/",
+    "logo": "logos:go"
+  },
+  {
+    "id": "Typescript",
+    "name": "Typescript",
+    "link": "https://www.typescriptlang.org/",
+    "logo": "logos:typescript-icon"
+  },
+  {
+    "id": "Python",
+    "name": "Python",
+    "link": "https://python.org",
+    "logo": "logos:python"
+  },
+  {
+    "id": "Redis",
+    "name": "Redis",
+    "link": "https://redis.io/",
+    "logo": "logos:redis"
+  },
+  {
+    "id": "Postgres",
+    "name": "Postgres",
+    "link": "https://postgresql.org/",
+    "logo": "logos:postgresql"
+  },
+  {
+    "id": "MongoDB",
+    "name": "MongoDB",
+    "link": "https://www.mongodb.com/",
+    "logo": "logos:mongodb-icon"
+  },
+  {
+    "id": "RabbitMQ",
+    "name": "RabbitMQ",
+    "link": "https://www.rabbitmq.com/",
+    "logo": "logos:rabbitmq-icon"
+  },
+  {
+    "id": "Docker",
+    "name": "Docker",
+    "link": "https://docker.com",
+    "logo": "logos:docker-icon"
+  },
+  {
+    "id": "VSCode",
+    "name": "VSCode",
+    "link": "https://code.visualstudio.com",
+    "logo": "devicon:vscode"
+  }
+]

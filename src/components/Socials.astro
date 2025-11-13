@@ -1,0 +1,51 @@
+---
+import { Icon } from "astro-icon/components";
+
+const socialMediaRegexMap = [
+  { regex: /github\.com/, name: "GitHub", logo: "fa6-brands:github" },
+  { regex: /x\.com/, name: "X / Twitter", logo: "fa6-brands:x-twitter" },
+  { regex: /linkedin\.com/, name: "LinkedIn", logo: "fa6-brands:linkedin" },
+  { regex: /instagram\.com/, name: "Instagram", logo: "fa6-brands:instagram" },
+  { regex: /spotify\.com/, name: "Spotify", logo: "fa6-brands:spotify" },
+  { regex: /youtube\.com/, name: "Youtube", logo: "fa6-brands:youtube" },
+];
+
+// Update the links to point to your socials
+const socials = {
+  github: "https://github.com/",
+  x: "https://x.com/",
+  linkedin: "https://www.linkedin.com/",
+  instagram: "https://www.instagram.com/",
+  spotify: "https://open.spotify.com/",
+  youtube: "https://youtube.com/",
+};
+
+const mappedSocials = Object.values(socials).map((link) => {
+  const foundSocial = socialMediaRegexMap.find((social) =>
+    social.regex.test(link),
+  );
+  if (!foundSocial) throw new Error(`No social media found for link: ${link}`);
+  const { name, logo } = foundSocial;
+  return { name, link, logo };
+});
+---
+
+<div class="my-7 flex items-center justify-center gap-6 sm:gap-10">
+  {
+    mappedSocials.map((social) => (
+      <a
+        href={social.link}
+        target="_blank"
+        class="flex items-center justify-center"
+        aria-label={"Go to " + social.name + " profile"}
+      >
+        <Icon
+          name={social.logo}
+          class="social-item text-muted hover:text-main size-6 transition-all duration-300"
+          font-controlled="false"
+          aria-label={social.name + " logo"}
+        />
+      </a>
+    ))
+  }
+</div>

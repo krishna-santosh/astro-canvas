@@ -1,0 +1,42 @@
+[
+  {
+    "id": "project-1",
+    "name": "Lunark",
+    "release": 2021,
+    "link": "https://canvas.krish.fyi/works#project-1",
+    "image": "../assets/projects/project-1.jpg",
+    "featured": false
+  },
+  {
+    "id": "project-2",
+    "name": "Solance",
+    "release": 2023,
+    "link": "https://canvas.krish.fyi/works#project-2",
+    "image": "../assets/projects/project-2.jpg",
+    "featured": true
+  },
+  {
+    "id": "project-3",
+    "name": "NeuraForge",
+    "release": "Coming Soon",
+    "link": "https://canvas.krish.fyi/works#project-3",
+    "image": "../assets/projects/project-3.jpg",
+    "featured": false
+  },
+  {
+    "id": "project-4",
+    "name": "Vyntra",
+    "release": 2024,
+    "link": "https://canvas.krish.fyi/works#project-4",
+    "image": "../assets/projects/project-4.jpg",
+    "featured": true
+  },
+  {
+    "id": "project-5",
+    "name": "Aetheron",
+    "release": 2025,
+    "link": "https://canvas.krish.fyi/works#project-5",
+    "image": "../assets/projects/project-5.jpg",
+    "featured": true
+  }
+]

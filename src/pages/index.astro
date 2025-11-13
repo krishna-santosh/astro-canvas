@@ -1,0 +1,165 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+import { Icon } from "astro-icon/components";
+
+import Socials from "../components/Socials.astro";
+import SpotlightButton from "../components/SpotlightButton.svelte";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import FAQ from "../components/FAQ.svelte";
+import profile from "../assets/profile.jpg";
+import Divider from "../components/Divider.astro";
+
+const projects = await getCollection("projects", ({ data }) => data.featured);
+---
+
+<BaseLayout>
+  <section class="relative pt-12">
+    <!-- grid -->
+    <div
+      style="background-size: 4rem;"
+      class="pointer-events-none absolute inset-0 bg-[url(/bg.svg)] mask-[radial-gradient(white,transparent_85%)] bg-center"
+    >
+    </div>
+
+    <div
+      class="relative mx-auto flex max-w-7xl flex-col justify-center gap-4 px-4 py-8 sm:px-6 lg:px-8 lg:py-16"
+    >
+      <!-- spotlight -->
+      <div
+        class="absolute -top-8 left-1/2 size-72 -translate-x-1/2 rounded-full bg-white/25 blur-[120px] lg:-top-8 lg:size-128 lg:blur-[200px]"
+      >
+      </div>
+
+      <!-- profile picture -->
+      <div class="z-10 flex items-center justify-center">
+        <SpotlightButton as="span" client:visible rounded>
+          <div
+            class="font-mona relative flex items-center justify-center gap-2 bg-linear-to-b from-white/25 to-white bg-clip-text text-lg font-medium text-transparent transition-all duration-200"
+          >
+            <Image
+              width="96"
+              src={profile}
+              loading={"eager"}
+              format="avif"
+              class="size-24 rounded-full border-2 border-gray-800/30 object-cover"
+              alt="John Doe"
+              aria-label="John Doe"
+            />
+          </div>
+        </SpotlightButton>
+      </div>
+
+      <div class="z-20 flex flex-col items-center justify-center">
+        <!-- title -->
+        <div
+          class="font-geist"
+          style="--stagger: 1; --delay: 10ms"
+          data-animate
+        >
+          <p class="mx-auto mb-3 text-center text-white/60 antialiased">
+            Hello there!
+          </p>
+          <h1
+            class="mx-auto bg-linear-to-b from-white/90 to-white/30 bg-clip-text text-center text-3xl leading-tight text-pretty text-transparent lg:max-w-3xl lg:text-4xl"
+          >
+            I'm John Doe
+          </h1>
+
+          <h2
+            class="mx-auto mt-4 max-w-xl text-center text-lg text-white/60 antialiased"
+          >
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, sequi
+            delectus vitae modi unde necessitatibus architecto quibusdam,
+            assumenda ad voluptas inventore voluptatibus repellendus, blanditiis
+            officiis consequatur dolor sapiente amet ab.
+          </h2>
+        </div>
+
+        <div style="--stagger: 2" data-animate>
+          <Socials />
+        </div>
+
+        <div
+          class="flex flex-col items-center justify-center gap-4 sm:gap-2"
+          style="--stagger: 3"
+          data-animate
+        >
+          <div
+            class="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-2"
+          >
+            <a href="/resume.pdf">
+              <SpotlightButton client:visible as="span">
+                <span
+                  class="font-mona relative flex items-center justify-center gap-2 bg-linear-to-b from-white/25 to-white bg-clip-text text-lg font-medium text-transparent transition-all duration-200"
+                >
+                  View Resume
+                  <Icon
+                    name="heroicons:code-bracket"
+                    class="size-5 text-white/80"
+                  />
+                </span>
+              </SpotlightButton>
+            </a>
+            <a href="/contact">
+              <SpotlightButton client:visible as="span">
+                <span
+                  class="font-mona relative flex items-center justify-center gap-2 bg-linear-to-b from-white/25 to-white bg-clip-text text-lg font-medium text-transparent transition-all duration-200"
+                >
+                  Get in touch
+                  <Icon
+                    name="heroicons:envelope"
+                    class="size-5 text-white/80"
+                  />
+                </span>
+              </SpotlightButton>
+            </a>
+          </div>
+        </div>
+
+        <div
+          style="--stagger: 4"
+          data-animate
+          class="mt-12 flex w-full max-w-3xl flex-col gap-4 lg:mt-16"
+        >
+          <div class="flex w-full flex-col gap-6">
+            <h3 class="text-white-shadow font-newsreader text-xl italic">
+              Works
+            </h3>
+            <div class="flex w-full flex-col gap-4">
+              {
+                projects.map(({ data: project }) => (
+                  <a
+                    class="flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2 hover:bg-neutral-900"
+                    href={project.link}
+                    aria-label={"go to " + project.name + " project page"}
+                  >
+                    <span class="whitespace-nowrap">{project.name}</span>
+                    <span class="bg-muted mx-2 h-px w-full" />
+                    <span class="text-muted whitespace-nowrap">
+                      {project.release}
+                    </span>
+                  </a>
+                ))
+              }
+            </div>
+            <a
+              class="text-white-shadow font-newsreader w-fit cursor-pointer text-sm italic"
+              href="/works"
+              rel="nofollow"
+            >
+              See more
+            </a>
+          </div>
+        </div>
+
+        <Divider style="--stagger: 5" data-animate class="my-12" />
+
+        <div style="--stagger: 6" data-animate class="w-full">
+          <FAQ client:load />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,87 @@
+---
+import { Icon } from "astro-icon/components";
+import Divider from "../components/Divider.astro";
+import MeetingButton from "../components/MeetingButton.astro";
+import Socials from "../components/Socials.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactForm from "../components/ContactForm.svelte";
+
+// TODO: Replace this key with your Cloudflare Turnstile SiteKey
+const siteKey = "3x00000000000000000000FF";
+---
+
+<BaseLayout title="Contact">
+  <section class="mx-auto mt-4 flex max-w-4xl flex-col p-7 sm:mt-20">
+    <h1 class="text-white-shadow font-newsreader text-center text-4xl italic">
+      Contact
+    </h1>
+    <h2 class="text-muted text-center text-lg font-extralight italic">
+      Feel free to leave a message
+    </h2>
+    <Divider class="mt-2 mb-8" />
+    <div class="flex flex-col sm:items-center sm:justify-between">
+      <ContactForm client:load siteKey={siteKey} />
+      <Divider class="my-10" />
+      <div
+        class="flex w-full flex-col items-center justify-between gap-4 sm:flex-row"
+      >
+        <div class="flex flex-col gap-3">
+          <div class="flex items-center gap-3 text-zinc-400">
+            <Icon name="heroicons:phone" class="size-5" aria-hidden="true" />
+
+            <a
+              href="tel:+123-456-7890"
+              class="hover:text-main cursor-pointer transition-colors duration-300"
+            >
+              +123-456-7890
+            </a>
+          </div>
+          <div class="flex items-center gap-3 text-zinc-400">
+            <Icon name="heroicons:envelope" class="size-5" aria-hidden="true" />
+
+            <a
+              href="mailto:hello@example.com"
+              class="hover:text-main cursor-pointer transition-colors duration-300"
+            >
+              hello@example.com
+            </a>
+            <script is:inline>
+              // Script to decode CF email protection on Client Navigation (View Transitions)
+              function decodeCfEmailProtection(encoded) {
+                const r = parseInt(encoded.substr(0, 2), 16);
+                let email = "";
+                for (let i = 2; i < encoded.length; i += 2) {
+                  const code = parseInt(encoded.substr(i, 2), 16) ^ r;
+                  email += String.fromCharCode(code);
+                }
+                return email;
+              }
+
+              function decodeAllCfEmails() {
+                document.querySelectorAll(".__cf_email__").forEach((el) => {
+                  const encoded = el.getAttribute("data-cfemail");
+                  if (!encoded) return;
+
+                  const decoded = decodeCfEmailProtection(encoded);
+                  el.textContent = decoded;
+
+                  const parentLink = el.closest("a");
+                  if (parentLink) {
+                    parentLink.setAttribute("href", "mailto:" + decoded);
+                  }
+                });
+              }
+
+              document.addEventListener("astro:page-load", () => {
+                decodeAllCfEmails();
+              });
+            </script>
+          </div>
+        </div>
+        <MeetingButton />
+      </div>
+      <Divider class="my-8 sm:my-10" />
+      <Socials />
+    </div>
+  </section>
+</BaseLayout>

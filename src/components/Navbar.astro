@@ -1,0 +1,77 @@
+---
+import { Icon } from "astro-icon/components";
+import SpotlightButton from "./SpotlightButton.svelte";
+
+const navigation = [
+  {
+    name: "Home",
+    to: "/",
+    icon: "lucide:home",
+  },
+  {
+    name: "Works",
+    to: "/works",
+    icon: "lucide:briefcase",
+  },
+  {
+    name: "Writing",
+    to: "/writing",
+    icon: "lucide:library",
+  },
+  {
+    name: "About",
+    to: "/about",
+    icon: "lucide:user",
+  },
+  {
+    name: "Contact",
+    to: "/contact",
+    icon: "lucide:mail",
+  },
+];
+---
+
+<header
+  class="fixed bottom-0 z-50 mx-auto my-2 flex w-full cursor-pointer items-center justify-center rounded-full sm:top-0 sm:bottom-auto"
+>
+  <SpotlightButton
+    client:visible
+    rounded
+    transparent
+    animate={false}
+    as="div"
+    className={"border border-white/10"}
+  >
+    <nav
+      class="z-10 flex h-[50px] justify-around gap-2 p-1 transition-all duration-300 ease-in-out sm:h-[45px] sm:hover:gap-4"
+    >
+      {
+        navigation.map(({ name, icon, to }) => (
+          <a
+            href={to === "/favourites" ? to + "/books" : to}
+            aria-label={name + " navigation link"}
+            class:list={{
+              active:
+                Astro.url.pathname === to ||
+                (to !== "/" && Astro.url.pathname.startsWith(to)),
+            }}
+          >
+            <Icon name={icon} class="size-7 font-light sm:size-6" />
+          </a>
+        ))
+      }
+    </nav>
+  </SpotlightButton>
+</header>
+
+<style>
+  @reference "../styles/main.css";
+
+  nav > a {
+    @apply text-muted hover:text-main flex items-center rounded-full border border-transparent px-4 py-1 transition-all duration-300 ease-in-out hover:border-white/5 hover:bg-zinc-900/50 hover:backdrop-blur-3xl sm:px-6;
+  }
+
+  nav > a.active {
+    @apply border border-white/5 bg-zinc-900/10 text-white/75 shadow-2xl shadow-white/50 backdrop-blur-3xl;
+  }
+</style>

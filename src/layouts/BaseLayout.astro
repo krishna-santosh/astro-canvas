@@ -1,0 +1,62 @@
+---
+import "../styles/main.css";
+
+import { ClientRouter } from "astro:transitions";
+import { Icon } from "astro-icon/components";
+
+import DotPattern from "../components/DotPattern.astro";
+import Footer from "../components/Footer.astro";
+import Navbar from "../components/Navbar.astro";
+import ScrollToTop from "../components/ScrollToTop.svelte";
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description = "Astro Canvas" } = Astro.props;
+
+const derivedTitle = title ? `${title} | John Doe` : "John Doe";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{derivedTitle}</title>
+    <meta name="description" content={description} />
+    <script is:inline>
+      const link1 = document.createElement("link");
+      link1.rel = "preload";
+      link1.as = "font";
+      link1.href = "/fonts/GeistVF.woff2";
+      link1.type = "font/woff2";
+      link1.crossOrigin = "anonymous";
+      document.head.appendChild(link1);
+
+      const link2 = document.createElement("link");
+      link2.rel = "preload";
+      link2.as = "font";
+      link2.href = "/fonts/newsreader-latin-400-italic.woff2";
+      link2.type = "font/woff2";
+      link2.crossOrigin = "anonymous";
+      document.head.appendChild(link2);
+    </script>
+    <ClientRouter />
+  </head>
+  <body
+    class="font-geist text-main bg-zinc-950 transition-colors duration-300 selection:bg-white/60 selection:text-zinc-800"
+  >
+    <Navbar />
+    <div class="min-h-dvh sm:mt-[50px]">
+      <slot />
+    </div>
+    <Footer />
+    <DotPattern />
+    <ScrollToTop client:visible>
+      <Icon name="heroicons:arrow-up" class="z-20 size-6" />
+    </ScrollToTop>
+  </body>
+</html>

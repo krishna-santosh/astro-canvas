@@ -1,0 +1,5 @@
+---
+const { class: className, ...attrs } = Astro.props;
+---
+
+<div class:list={["linebreak", className]} {...attrs}></div>

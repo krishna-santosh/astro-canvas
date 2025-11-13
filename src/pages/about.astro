@@ -1,0 +1,190 @@
+---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+
+import { Icon } from "astro-icon/components";
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Divider from "../components/Divider.astro";
+import Signature from "../components/Signature.astro";
+import SpotlightCard from "../components/SpotlightCard.svelte";
+
+import profile from "../assets/profile.jpg";
+
+const stackCollection = await getCollection("stack");
+const stack = stackCollection.map(({ data }) => data);
+
+const experiences = [
+  {
+    title: "AI Systems Architect",
+    date: "2024-Present",
+    company: "NeuroFlux Labs",
+  },
+  {
+    title: "Full-Stack Engineer",
+    date: "2022-2024",
+    company: "Skybound Technologies",
+  },
+  {
+    title: "Software R&D Intern",
+    date: "2020-2022",
+    company: "QuantumEdge Solutions",
+  },
+];
+---
+
+<BaseLayout title="About">
+  <section class="mx-auto mt-4 flex max-w-4xl flex-col p-7 sm:mt-20">
+    <h1 class="text-white-shadow font-newsreader text-center text-4xl italic">
+      About
+    </h1>
+    <h2 class="text-muted text-center text-lg font-extralight italic">
+      A few words about me
+    </h2>
+    <Divider class="mt-2 mb-8" />
+
+    <div
+      class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+    >
+      <div class="flex justify-center">
+        <SpotlightCard
+          client:visible
+          mode="after"
+          from="rgba(255,255,255,0.1)"
+          size={400}
+          className="group hidden h-80 w-64 rounded-2xl border border-white/10 bg-white/5 p-2 pb-4 sm:flex"
+        >
+          <div class="relative">
+            <Image
+              width="290"
+              height="320"
+              src={profile}
+              loading={"eager"}
+              format="avif"
+              class="absolute inset-0 size-72 scale-110 rounded-xl object-cover blur-xl grayscale saturate-200 transition-all duration-300 group-hover:blur-[32px] group-hover:grayscale-0"
+              alt="John Doe"
+              aria-label="John Doe"
+            />
+            <Image
+              width="290"
+              height="320"
+              src={profile}
+              loading={"eager"}
+              format="avif"
+              class="relative size-72 rounded-xl object-cover grayscale transition-all duration-300 group-hover:grayscale-0"
+              alt="John Doe"
+              aria-label="John Doe"
+            />
+          </div>
+        </SpotlightCard>
+
+        <SpotlightCard
+          client:visible
+          mode="after"
+          from="rgba(255,255,255,0.1)"
+          size={400}
+          className="group w-64 rounded-2xl border border-white/10 bg-white/5 p-2 pb-4 sm:hidden"
+        >
+          <Image
+            width="260"
+            src={profile}
+            format="avif"
+            loading={"eager"}
+            class="size-64 rounded-xl object-cover transition-all duration-300"
+            alt="John Doe"
+            aria-label="John Doe"
+          />
+        </SpotlightCard>
+      </div>
+      <div class="relative flex flex-col gap-3 sm:ml-4">
+        <div class="text-main flex flex-col gap-4">
+          <div class="relative flex flex-col gap-3 sm:ml-4">
+            <h3 class="text-muted text-lg">Intro</h3>
+            <div class="text-main flex flex-col gap-4">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam
+                soluta non deleniti? Sapiente, ipsa officia? Debitis doloribus
+                temporibus laboriosam officiis.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius
+                incidunt obcaecati, consectetur nulla illo dolorem voluptatem
+                harum nostrum animi nam hic beatae? Sequi.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Pariatur ad assumenda quam animi maxime! Omnis reiciendis
+                magnam, similique modi corporis at reprehenderit.
+              </p>
+            </div>
+          </div>
+        </div>
+        <Signature class="absolute -right-2 -bottom-28 hidden w-40 sm:block" />
+        <Signature class="black absolute -right-2 -bottom-24 w-32 sm:hidden" />
+      </div>
+    </div>
+
+    <Divider class="my-8" />
+
+    <div class="flex flex-col gap-3">
+      <h3 class="text-white-shadow font-newsreader mb-4 text-2xl italic">
+        Experience
+      </h3>
+      <div class="flex flex-col gap-4">
+        <ul class="space-y-4">
+          {
+            experiences.map((experience) => (
+              <li class="space-y-1">
+                <p class="font-semibold">{experience.title}</p>
+                <div class="flex gap-1 *:font-light">
+                  <p class="text-sm text-neutral-300">{experience.date}</p>
+                  <span class="mx-1 text-neutral-400"> / </span>
+                  <p class="text-sm text-neutral-400">{experience.company}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <Divider class="my-8" />
+
+    <div class="flex flex-col gap-3">
+      <div class="mb-6 flex flex-col gap-1">
+        <h3 class="text-white-shadow font-newsreader text-2xl italic">Stack</h3>
+        <p class="text-muted text-sm">
+          Some of the software and technologies I use
+        </p>
+      </div>
+      <div class="mx-auto flex flex-wrap gap-2 sm:gap-4">
+        {
+          stack.map((item) => (
+            <SpotlightCard
+              client:visible
+              white
+              className="p-[calc(100vw/20)] min-[400px]:p-6"
+            >
+              <a
+                href={item.link}
+                rel="noopener nofollow"
+                target="_blank"
+                aria-label={item.name + "'s website link"}
+                class="flex gap-2"
+                title={item.name}
+              >
+                <Icon
+                  name={item.logo}
+                  class="text-main size-8"
+                  font-controlled="false"
+                  aria-label={item.name + " logo"}
+                />
+              </a>
+            </SpotlightCard>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

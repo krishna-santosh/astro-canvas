@@ -1,0 +1,37 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+export interface Props {
+  articleEntry: CollectionEntry<"writing">;
+}
+
+const { articleEntry } = Astro.props;
+const article = articleEntry.data;
+const id = articleEntry.id;
+---
+
+<a
+  href={`/writing/${id}`}
+  aria-label={article.title}
+  class="flex cursor-pointer flex-col gap-2"
+>
+  <div
+    class="overflow-hidden rounded-md border border-white/10 shadow-md shadow-zinc-950/50 transition-colors duration-200 hover:border-white/20"
+  >
+    <Image
+      width="1536"
+      alt={`${article.title}`}
+      loading={"eager"}
+      format="avif"
+      class="h-64 w-full object-cover transition-transform duration-200 hover:scale-105"
+      src={article.image}
+    />
+  </div>
+  <div class="flex flex-col">
+    <h3 class="text-lg font-semibold">
+      {article.title}
+    </h3>
+    <span class="text-muted text-xs">{article.date.toDateString()}</span>
+  </div>
+</a>

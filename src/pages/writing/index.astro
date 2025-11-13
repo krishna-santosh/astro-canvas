@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Divider from "../../components/Divider.astro";
+import { getCollection } from "astro:content";
+import ArticleCard from "../../components/ArticleCard.astro";
+
+const writingCollection = (
+  await getCollection("writing", ({ data }) => !data.draft)
+).sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+);
+---
+
+<BaseLayout title="Writing">
+  <section class="mx-auto mt-4 flex max-w-4xl flex-col p-7 sm:mt-20">
+    <h1 class="text-white-shadow font-newsreader text-center text-4xl italic">
+      Writing
+    </h1>
+    <h2 class="text-muted text-center text-lg font-extralight italic">
+      Some writings on topics that are close to my heart
+    </h2>
+    <Divider class="mt-2 mb-8" />
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      {writingCollection.map((articleEntry) => <ArticleCard {articleEntry} />)}
+    </div>
+  </section>
+</BaseLayout>

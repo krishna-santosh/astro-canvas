@@ -1,0 +1,69 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  projectEntry: CollectionEntry<"projects">;
+}
+
+const { projectEntry } = Astro.props;
+const project = projectEntry.data;
+const id = projectEntry.id;
+---
+
+<a
+  href={project.link}
+  aria-label={project.name + " website"}
+  target="_blank"
+  class="group relative flex cursor-pointer flex-col gap-1 rounded-lg border border-white/10 bg-zinc-900/80 p-1 shadow-2xl shadow-zinc-950/50 will-change-transform contain-paint"
+>
+  <div class="flex gap-1 px-1 py-0.5">
+    <span
+      class="size-2 rounded-full bg-red-500/90 transition-colors duration-300 group-hover:bg-red-500/90 sm:bg-white/10"
+    >
+    </span>
+    <span
+      class="size-2 rounded-full bg-yellow-500/90 transition-colors duration-300 group-hover:bg-yellow-500/90 sm:bg-white/10"
+    >
+    </span>
+    <span
+      class="size-2 rounded-full bg-green-500/90 transition-colors duration-300 group-hover:bg-green-500/90 sm:bg-white/10"
+    >
+    </span>
+  </div>
+  <div
+    class="flex aspect-video justify-center overflow-hidden rounded-lg sm:h-56"
+  >
+    <Image
+      src={project.image}
+      format="avif"
+      width="425"
+      loading={"eager"}
+      alt={project.name}
+      class="h-full rounded-lg object-cover transition-transform duration-300 hover:scale-105"
+    />
+  </div>
+  <div class="absolute bottom-0 flex w-full justify-center">
+    <div
+      class="rounded-t-lg border-x border-t border-white/10 border-b-transparent bg-zinc-900 px-4 py-[5px] shadow-md sm:w-2/3 sm:bg-transparent sm:backdrop-blur-lg"
+    >
+      <div class="flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2">
+          <span class="text-sm font-semibold whitespace-nowrap text-white/90">
+            {project.name}
+          </span>
+          <span class="text-xs whitespace-nowrap text-neutral-400">
+            {project.release}
+          </span>
+        </div>
+        <div
+          class="flex items-center justify-center rounded-full border border-transparent p-1 shadow-md transition-transform duration-500 will-change-transform group-hover:-rotate-45 group-hover:border-white/20"
+        >
+          <Icon name="heroicons:arrow-right" class="size-3 text-white" />
+        </div>
+      </div>
+    </div>
+  </div>
+</a>

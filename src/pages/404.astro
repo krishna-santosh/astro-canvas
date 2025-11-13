@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SpotlightButton from "../components/SpotlightButton.svelte";
+---
+
+<BaseLayout title="Page Not Found">
+  <section
+    class="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-3"
+  >
+    <h1 class="font-newsreader text-5xl font-semibold sm:text-8xl">404</h1>
+    <h2 class="text-2xl font-light sm:text-4xl">Page Not Found</h2>
+    <a href="/" aria-label="Back to Home">
+      <SpotlightButton as="span" client:visible className={"mt-10"}>
+        <span class="z-10 flex items-center justify-center text-white/80"
+          >Back to Home
+        </span>
+      </SpotlightButton>
+    </a>
+  </section>
+</BaseLayout>

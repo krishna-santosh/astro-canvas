@@ -1,0 +1,39 @@
+{
+  "name": "astro-canvas",
+  "author": {
+    "name": "Krishna Santosh",
+    "url": "https://krish.fyi"
+  },
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "fmt": "prettier -w ."
+  },
+  "dependencies": {
+    "@astrojs/svelte": "^7.2.2",
+    "@tailwindcss/vite": "^4.1.17",
+    "astro": "^5.15.5",
+    "astro-icon": "^1.1.5",
+    "svelte": "^5.43.6",
+    "tailwindcss": "^4.1.17",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@iconify-json/devicon": "^1.2.48",
+    "@iconify-json/lucide": "^1.2.73",
+    "@iconify-json/fa6-brands": "^1.2.6",
+    "@iconify-json/heroicons": "^1.2.3",
+    "@iconify-json/logos": "^1.2.10",
+    "@iconify/svelte": "^5.1.0",
+    "@tailwindcss/typography": "^0.5.19",
+    "prettier": "^3.6.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-svelte": "^3.4.0",
+    "prettier-plugin-tailwindcss": "^0.7.1",
+    "svelte-turnstile": "^0.11.0"
+  }
+}
